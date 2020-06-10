@@ -1,0 +1,54 @@
+nodes:
+  - name: 'myApiProjectName'
+    labels: ["web", "backend", "api", "php"]
+    customFields:
+      customField1: "value field 1"
+      customField2: "value field 2"
+      customField3: 100
+    dependencies:
+      name: 'HOST_IN'
+      to: 'machinename'
+      customFields:
+        port:80
+  
+  - name: 'csharpweb'
+    labels: ["web", "backend", "api", "csharp", "web", "front"]
+    customFields:
+      customField1: "value field 1"
+      customField2: "value field 2"
+      customField3: 100
+    dependencies:
+      - name: 'HOST_IN'
+        to: 'machinename2'
+        customFields:
+          port:8080
+      - name: 'USE'
+        to: 'sqlserver'
+  
+  - name: 'sqlserverInstance'
+    labels: ["database", "db", "windows", "sqlserver", "prod"]
+    customFields:
+      customFields: "Value Field 1"
+    dependencies:
+      - name: 'HOST_IN'
+        to: 'machinename3'
+        customFields:
+          port:9876
+  
+  - name: 'sqlserverInstance2'
+    labels: ["database", "db", "windows", "sqlserver", "dev"]
+    customFields:
+      customFields1: "Field 1" 
+    dependencies:
+      - name: 'HOST_IN'
+        to: 'machinename4'
+  
+  - name: 'machinename'
+    labels: ["server", "ubuntu" ]
+    customFields:
+      customField1: "value field 1"
+    dependencies:
+      name: 'HOST_IN'
+      to: 'machinename'
+      customFields:
+        port:80
